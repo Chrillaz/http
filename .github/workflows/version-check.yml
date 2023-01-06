@@ -1,0 +1,20 @@
+name: version check
+
+on:
+    workflow_call:
+
+jobs:
+    version-check:
+        name: Version check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Package Version
+              run: echo "##[set-output name=VERSION;]$(grep '"version"' package.json | cut -d '"' -f 4 | head -n 1)"
+              id: package
+
+            - name: Compatible tag
+              run: exit 1
+              if: |
+                  ${{ github.ref_name }} != ${{ steps.package.outputs.VERSION }}

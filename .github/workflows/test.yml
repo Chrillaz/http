@@ -1,11 +1,11 @@
-name: testrunner
+name: test
 
 on:
-    push:
-        branches: [main]
+    workflow_call:
 
 jobs:
     test:
+        name: Test
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -17,6 +17,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: '${{ steps.nvm.outputs.NVMRC }}'
+                  cache: npm
 
             - run: npm ci
             - run: npm test --coverage=false
