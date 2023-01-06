@@ -1,0 +1,10 @@
+node_modules
+lib
+types
+
+.tsbuildinfo
+npm-debug.log*
+
+.DS_Store
+.local-chromium
+obj

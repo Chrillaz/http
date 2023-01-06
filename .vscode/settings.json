@@ -1,0 +1,13 @@
+{
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"diffEditor.ignoreTrimWhitespace": true,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"javascript.updateImportsOnFileMove.enabled": "never",
+	"prettier.requireConfig": true,
+	"typescript.updateImportsOnFileMove.enabled": "never"
+}
