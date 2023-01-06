@@ -1,7 +1,7 @@
 import { jsonResponse } from '../src/response';
 
 describe('response', () => {
-	const typeErrorResponses = ['', 1, {}, []];
+	const typeErrorResponses = ['', 1, {}, []] as Response[];
 
 	const mockJson = {
 		key: 'value',
@@ -20,7 +20,7 @@ describe('response', () => {
 	});
 
 	test('To recieve TypeError when json() is not a function on Response', async () => {
-		const response = async (payload: any) =>
+		const response = async (payload: Response) =>
 			jsonResponse(payload).catch((error) => {
 				return error;
 			});
