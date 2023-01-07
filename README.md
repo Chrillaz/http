@@ -5,7 +5,7 @@ Provides a wrapper around `window.fetch` which imitates the interface given by A
 ## Usage
 
 First create a module that exports the setup.
-in the create function we can define some common configs for every request. all propertie in RequestInit are valid.
+in the create function we can define some common configs for every request. All properties are inherited from the `RequestInit` interface except the baseUrl.
 example:
 
 ```ts
@@ -26,9 +26,11 @@ Whith this setup the api can be imported and used like this.
 ```ts
 import { api } from './your/path/to/api';
 
+type TypeForResponseDataProperty = string;
+
 async function someHttpCall() {
 	try {
-		const response = await api.get<TypeForDataProperty>('someUrl', {
+		const response = await api.get<TypeForResponseDataProperty>('/someUrlPath', {
 			// optional, any aditional RequestInit configs or overrides
 		});
 	} catch (error) {
@@ -46,7 +48,7 @@ Ex within the module where the api variable is exported are a grate place to def
 import { create } from '@chrillaz/http';
 
 const api = create({
-	baseUrl: 'https://someUrl',
+	baseUrl: 'https://someUrl.com',
 	headers: {
 		'Content-Type': 'application/json',
 	},
