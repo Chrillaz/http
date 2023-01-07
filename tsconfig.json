@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
+		"allowJs": false,
 		"declaration": true,
 		"declarationMap": false,
-		"declarationDir": "lib/types",
+		"declarationDir": "lib",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"inlineSourceMap": false,
@@ -12,6 +13,7 @@
 		"moduleResolution": "node",
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
+		"outDir": "lib",
 		"pretty": true,
 		"rootDir": ".",
 		"skipLibCheck": true,
@@ -21,5 +23,5 @@
 		"typeRoots": ["types", "node_modules/@types"]
 	},
 	"include": ["src"],
-	"exclude": ["node_modules", "lib", "__tests__"]
+	"exclude": ["node_modules", "lib", "src/**/*.test.*"]
 }
