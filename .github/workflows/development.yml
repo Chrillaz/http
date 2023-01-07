@@ -1,0 +1,12 @@
+name: development
+
+on:
+    pull_request:
+        types: [opened]
+        branches: [development]
+    push:
+        branches: [development]
+
+jobs:
+    call-test:
+        uses: './.github/workflows/test.yml'
