@@ -15,6 +15,7 @@ jobs:
               id: package
 
             - name: Compatible tag
-              run: exit 1
-              if: |
-                  ${{ github.ref_name }} != ${{ steps.package.outputs.VERSION }}
+              if: ${{ github.ref_name }} != ${{ steps.package.outputs.VERSION }}
+              run: |
+                  echo "Package version: ${{ steps.package.output.VERSION }} incompatible with tag: ${{ github.ref_name }}"
+                  exit 1
