@@ -10,5 +10,7 @@ jobs:
         uses: './.github/workflows/version-check.yml'
     call-test:
         uses: './.github/workflows/test.yml'
+        needs: [call-version-check]
     call-build-and-publish:
         uses: './.github/workflows/build-and-publish.yml'
+        needs: [call-version-check, call-test]
