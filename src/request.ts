@@ -1,13 +1,11 @@
 import { HttpResponse, Publisher, RequestConfig } from './types';
-import * as Response from './response';
+import { jsonResponse } from './response';
 
-async function request<Data>(
-	path: string,
-	config: RequestConfig,
-	publisher: Publisher
-): Promise<HttpResponse<Data>> {
-	const response = await fetch(path, config);
-	return await Response.jsonResponse<Data>(publisher.response(response));
+function requestInit(publisher: Publisher) {
+	return async <Data = unknown>(url: string, config: RequestConfig) => {
+		const response = await fetch(url, publisher.request(config));
+		return await jsonResponse<Data>(publisher.response(response));
+	};
 }
 
-export { request };
+export { requestInit };

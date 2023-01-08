@@ -1,60 +1,42 @@
-import { InitConfig, Publisher, RequestConfig } from './types';
-import { RequestMethods } from './methods';
-import { request } from './request';
+import { InitConfig, RequestConfig, RequestMethods, RequestRelay } from './types';
 
-async function get({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
+function get({ baseUrl, ...config }: InitConfig, relay: RequestRelay) {
 	return async <Data = unknown>(path: string, requestConfig?: RequestConfig) => {
-		return await request<Data>(
-			baseUrl + path,
-			publisher.request({
-				method: RequestMethods.GET,
-				...config,
-				...(requestConfig ? requestConfig : {}),
-			}),
-			publisher
-		);
+		return await relay<Data>(baseUrl + path, {
+			method: RequestMethods.GET,
+			...config,
+			...(requestConfig ? requestConfig : {}),
+		});
 	};
 }
 
-async function put({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
+function put({ baseUrl, ...config }: InitConfig, relay: RequestRelay) {
 	return async <Data = unknown>(path: string, requestConfig?: RequestConfig) => {
-		return await request<Data>(
-			baseUrl + path,
-			publisher.request({
-				method: RequestMethods.PUT,
-				...config,
-				...(requestConfig ? requestConfig : {}),
-			}),
-			publisher
-		);
+		return await relay<Data>(baseUrl + path, {
+			method: RequestMethods.PUT,
+			...config,
+			...(requestConfig ? requestConfig : {}),
+		});
 	};
 }
 
-async function post({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
+function post({ baseUrl, ...config }: InitConfig, relay: RequestRelay) {
 	return async <Data = unknown>(path: string, requestConfig?: RequestConfig) => {
-		return await request<Data>(
-			baseUrl + path,
-			publisher.request({
-				method: RequestMethods.POST,
-				...config,
-				...(requestConfig ? requestConfig : {}),
-			}),
-			publisher
-		);
+		return await relay<Data>(baseUrl + path, {
+			method: RequestMethods.POST,
+			...config,
+			...(requestConfig ? requestConfig : {}),
+		});
 	};
 }
 
-async function _delete({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
+function _delete({ baseUrl, ...config }: InitConfig, relay: RequestRelay) {
 	return async <Data = unknown>(path: string, requestConfig?: RequestConfig) => {
-		return await request<Data>(
-			baseUrl + path,
-			publisher.request({
-				method: RequestMethods.DELETE,
-				...config,
-				...(requestConfig ? requestConfig : {}),
-			}),
-			publisher
-		);
+		return await relay<Data>(baseUrl + path, {
+			method: RequestMethods.DELETE,
+			...config,
+			...(requestConfig ? requestConfig : {}),
+		});
 	};
 }
 
