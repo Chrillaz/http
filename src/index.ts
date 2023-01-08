@@ -1,2 +1,2 @@
 export * from './types';
-export { create } from './init';
+export { init as create } from './init';
