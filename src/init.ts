@@ -2,16 +2,17 @@ import { interceptor, publisher } from './interceptor';
 import { InitConfig } from './types';
 import { get, post, put, _delete } from './verbs';
 
-function http(config: InitConfig) {
+function init(config: InitConfig) {
 	const interceptors = interceptor();
+	const publishers = publisher(interceptors);
 
 	return {
-		get: get(config, publisher(interceptors)),
-		put: put(config, publisher(interceptors)),
-		post: post(config, publisher(interceptors)),
-		delete: _delete(config, publisher(interceptors)),
+		get: get(config, publishers),
+		put: put(config, publishers),
+		post: post(config, publishers),
+		delete: _delete(config, publishers),
 		interceptor: interceptors,
 	};
 }
 
-export { http as create };
+export { init };
