@@ -2,7 +2,7 @@ import { InitConfig, Publisher, RequestConfig } from './types';
 import { RequestMethods } from './methods';
 import { request } from './request';
 
-function get({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
+async function get({ baseUrl, ...config }: InitConfig, publisher: Publisher) {
 	return async <Data = unknown>(path: string, requestConfig?: RequestConfig) => {
 		return await request<Data>(
 			baseUrl + path,
