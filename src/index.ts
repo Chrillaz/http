@@ -22,6 +22,6 @@ function create(config: InitConfig) {
 	};
 }
 
-export { aggregate } from './aggregate';
+export { tryCatch } from './trycatch';
 export * from './types';
 export default { ...http, create };

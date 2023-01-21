@@ -13,7 +13,7 @@ function errorWithMessage(error: unknown): error is ErrorWithMessage {
 	);
 }
 
-async function aggregate<Data = unknown>(
+async function tryCatch<Data = unknown>(
 	promise: Promise<HttpResponse<Data>>
 ): Promise<[string?, Data?]> {
 	try {
@@ -38,4 +38,4 @@ async function aggregate<Data = unknown>(
 	}
 }
 
-export { aggregate };
+export { tryCatch };

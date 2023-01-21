@@ -1,8 +1,8 @@
-import { aggregate } from './aggregate';
+import { tryCatch } from './trycatch';
 import http from './index';
 jest.mock('http');
 
-describe('aggregate', () => {
+describe('trycatch', () => {
 	const successResponse = {
 		ok: true,
 		status: 200,
@@ -25,7 +25,7 @@ describe('aggregate', () => {
 		const [
 			error,
 			data,
-		] = await aggregate(http.get('/'));
+		] = await tryCatch(http.get('/'));
 
 		expect(data).toEqual({ key: 'value' });
 		expect(error).not.toBeDefined();
@@ -35,7 +35,7 @@ describe('aggregate', () => {
 		const [
 			error,
 			data,
-		] = await aggregate(http.get('/'));
+		] = await tryCatch(http.get('/'));
 
 		expect(error).toEqual(errorResponse.message);
 		expect(data).not.toBeDefined();
@@ -45,7 +45,7 @@ describe('aggregate', () => {
 		const [
 			error,
 			data,
-		] = await aggregate(http.get('/'));
+		] = await tryCatch(http.get('/'));
 
 		expect(error).toEqual(unknownResponse);
 		expect(data).not.toBeDefined();
