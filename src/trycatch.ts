@@ -13,20 +13,29 @@ function errorWithMessage(error: unknown): error is ErrorWithMessage {
 	);
 }
 
-async function aggregate<Data = unknown>(
+async function tryCatch<Data = unknown>(
 	promise: Promise<HttpResponse<Data>>
 ): Promise<[string?, Data?]> {
 	try {
 		const { data } = await promise;
 
-		return [undefined, data];
+		return [
+			undefined,
+			data,
+		];
 	} catch (error) {
 		if (errorWithMessage(error)) {
-			return Promise.resolve([error.message, undefined]);
+			return Promise.resolve([
+				error.message,
+				undefined,
+			]);
 		}
 
-		return Promise.resolve(['Unknown error', undefined]);
+		return Promise.resolve([
+			'Unknown error',
+			undefined,
+		]);
 	}
 }
 
-export { aggregate };
+export { tryCatch };

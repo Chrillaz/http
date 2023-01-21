@@ -8,13 +8,18 @@ jobs:
         name: Test
         runs-on: ubuntu-latest
 
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         steps:
             - uses: actions/checkout@v3
 
             - uses: actions/setup-node@v3
               with:
-                  node-version-file: '.nvmrc'
                   cache: npm
+                  node-version-file: '.nvmrc'
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@chrillaz'
 
             - run: npm ci
             - run: npm test --coverage=false
