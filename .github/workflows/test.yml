@@ -16,8 +16,10 @@ jobs:
 
             - uses: actions/setup-node@v3
               with:
-                  node-version-file: '.nvmrc'
                   cache: npm
+                  node-version-file: '.nvmrc'
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@chrillaz'
 
             - run: npm ci
             - run: npm test --coverage=false
