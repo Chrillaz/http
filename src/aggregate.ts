@@ -19,13 +19,22 @@ async function aggregate<Data = unknown>(
 	try {
 		const { data } = await promise;
 
-		return [undefined, data];
+		return [
+			undefined,
+			data,
+		];
 	} catch (error) {
 		if (errorWithMessage(error)) {
-			return Promise.resolve([error.message, undefined]);
+			return Promise.resolve([
+				error.message,
+				undefined,
+			]);
 		}
 
-		return Promise.resolve(['Unknown error', undefined]);
+		return Promise.resolve([
+			'Unknown error',
+			undefined,
+		]);
 	}
 }
 

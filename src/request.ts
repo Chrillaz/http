@@ -60,7 +60,7 @@ function _delete(publisher: Publisher) {
 function request({ baseUrl, ...requestConfig }: InitConfig, verb: HttpRequest) {
 	return async <Data = unknown>(path: string, config: RequestConfig = {}) => {
 		return await verb<Data>(baseUrl + path, {
-            ...requestConfig,
+			...requestConfig,
 			...config,
 		});
 	};

@@ -1,6 +1,6 @@
 import { interceptor, publisher } from './interceptor';
+import { get, post, put, request, _delete } from './request';
 import { InitConfig } from './types';
-import { request, get, post, put, _delete } from './request';
 
 const interceptors = interceptor();
 const publishers = publisher(interceptors);
@@ -22,6 +22,6 @@ function create(config: InitConfig) {
 	};
 }
 
-export * from './types';
 export { aggregate } from './aggregate';
+export * from './types';
 export default { ...http, create };

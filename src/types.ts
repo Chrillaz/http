@@ -7,7 +7,7 @@ export enum RequestMethods {
 
 export type BaseUrl = string;
 
-export interface RequestConfig extends RequestInit {}
+export type RequestConfig = RequestInit
 
 export interface InitConfig extends RequestConfig {
 	baseUrl: BaseUrl;

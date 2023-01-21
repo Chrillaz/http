@@ -15,7 +15,9 @@ describe('response', () => {
 		{
 			ok: true,
 			status: 200,
-			json: async () => {},
+			json: async () => {
+				'a';
+			},
 		},
 		{
 			ok: true,
