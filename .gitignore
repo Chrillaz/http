@@ -1,5 +1,6 @@
-node_modules
+coverage
 lib
+node_modules
 types
 
 .tsbuildinfo

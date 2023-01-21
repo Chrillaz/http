@@ -13,14 +13,14 @@ export interface InitConfig extends RequestConfig {
 	baseUrl: BaseUrl;
 }
 
-export type RequestRelay = <Data = unknown>(
-	url: string,
-	config: RequestConfig
-) => Promise<HttpResponse<Data>>;
-
 export interface HttpResponse<Data> extends Partial<Response> {
 	data: Data;
 }
+
+export type HttpRequest = <Data = unknown>(
+	url: string,
+	config: RequestConfig
+) => Promise<HttpResponse<Data>>;
 
 export interface Publisher {
 	request: (config: RequestConfig) => RequestConfig;

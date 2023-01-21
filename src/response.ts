@@ -1,4 +1,9 @@
 async function jsonResponse<Data>(response: Response) {
+
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+
 	const result = (await response.json()) as Data;
 
 	return {
