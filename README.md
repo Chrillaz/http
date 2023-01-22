@@ -46,7 +46,7 @@ All requests and responses can be intercepted before passing/returning the actua
 Ex within the module where the api variable is exported are a grate place to define these interceptors
 
 ```ts
-import http, { RequestConfig } from '@chrillaz/http';
+import http from '@chrillaz/http';
 
 const api = http.create({
 	baseUrl: 'https://someUrl.com',
@@ -55,12 +55,12 @@ const api = http.create({
 	},
 });
 
-http.interceptors.request = (config: RequestConfig) => {
+http.interceptors.request = (config) => {
 	// Do something with the config.
 	return config;
 };
 
-http.interceptors.response = (response: Response) => {
+http.interceptors.response = (response) => {
 	// Do something with the response
 	return response;
 };

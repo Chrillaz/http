@@ -1,4 +1,4 @@
-import { HttpResponse } from './types';
+import { HttpResponse } from "./types";
 
 type ErrorWithMessage = {
 	message: string;

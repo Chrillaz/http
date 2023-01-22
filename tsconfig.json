@@ -1,27 +1,22 @@
 {
 	"compilerOptions": {
-		"allowJs": false,
 		"declaration": true,
 		"declarationMap": false,
 		"declarationDir": "lib",
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"inlineSourceMap": false,
-		"isolatedModules": true,
 		"lib": ["es2015", "dom"],
-		"module": "CommonJS",
-		"moduleResolution": "node",
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
+		"module": "commonjs",
 		"outDir": "lib",
 		"pretty": true,
-		"rootDir": ".",
+		"rootDir": "src",
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
 		"strictNullChecks": true,
-		"typeRoots": ["types", "node_modules/@types"]
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", "lib", "src/**/*.test.*"]
+	"exclude": [
+        "src/types.ts",
+        "node_modules", 
+        "lib", 
+        "**/*.test.*"
+    ]
 }
