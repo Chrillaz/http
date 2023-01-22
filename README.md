@@ -10,9 +10,9 @@ in the create function we can define some common configs for every request. All 
 example:
 
 ```ts
-import http from '@chrillaz/http';
+import { create } from '@chrillaz/http';
 
-const api = http.create({
+const api = create({
 	baseUrl: 'https://someUrl',
 	headers: {
 		'Content-Type': 'application/json',
@@ -46,9 +46,9 @@ All requests and responses can be intercepted before passing/returning the actua
 Ex within the module where the api variable is exported are a grate place to define these interceptors
 
 ```ts
-import http from '@chrillaz/http';
+import http, { create } from '@chrillaz/http';
 
-const api = http.create({
+const api = create({
 	baseUrl: 'https://someUrl.com',
 	headers: {
 		'Content-Type': 'application/json',
