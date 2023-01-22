@@ -27,7 +27,7 @@ describe('trycatch', () => {
 			data,
 		] = await tryCatch(http.get('/'));
 
-		expect(data).toEqual({ key: 'value' });
+		expect(data).toEqual(successResponse.data);
 		expect(error).not.toBeDefined();
 	});
 
