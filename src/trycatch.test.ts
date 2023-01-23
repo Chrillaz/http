@@ -1,4 +1,4 @@
-import { isHttpError, tryCatch } from './trycatch';
+import { isHttpError, tryCatch, unknwonError } from './trycatch';
 import http from './index';
 jest.mock('http');
 
@@ -13,7 +13,6 @@ describe('trycatch', () => {
 	};
 
 	const errorResponse = new Error('Something went wrong');
-	const unknownResponse = 'Unknown Error.';
 
 	http.get = jest
 		.fn()
@@ -40,7 +39,7 @@ describe('trycatch', () => {
 		const response = await tryCatch(http.get('/'));
 
         if (isHttpError(response)) {
-            expect(response.message).toEqual(unknownResponse);
+            expect(response.message).toEqual(unknwonError);
         }
 	});
 });

@@ -1,5 +1,7 @@
 import { HttpResponse } from "./types";
 
+export const unknwonError = 'Unknown Error.';
+
 type ErrorWithMessage = {
 	message: string;
 };
@@ -32,7 +34,7 @@ async function tryCatch<Data = unknown>(
 
 		return data;
 	} catch (error) {
-        let message = 'Unknwon Error.';
+        let message = unknwonError;
 		if (errorWithMessage(error)) {
 			message = error.message;
 		}
