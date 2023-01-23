@@ -1,8 +1,17 @@
 import { HttpResponse } from "./types";
 
+export const unknwonError = 'Unknown Error.';
+
 type ErrorWithMessage = {
 	message: string;
 };
+
+class HttpError {
+    message: string;
+    constructor(message: string) {
+        this.message = message;
+    }
+}
 
 function errorWithMessage(error: unknown): error is ErrorWithMessage {
 	return (
@@ -13,29 +22,27 @@ function errorWithMessage(error: unknown): error is ErrorWithMessage {
 	);
 }
 
+function isHttpError(error: unknown): error is HttpError {
+    return error instanceof HttpError;
+}
+
 async function tryCatch<Data = unknown>(
 	promise: Promise<HttpResponse<Data>>
-): Promise<[string?, Data?]> {
+): Promise<HttpError | Data> {
 	try {
 		const { data } = await promise;
 
-		return [
-			undefined,
-			data,
-		];
+		return data;
 	} catch (error) {
+        let message = unknwonError;
 		if (errorWithMessage(error)) {
-			return Promise.resolve([
-				error.message,
-				undefined,
-			]);
+			message = error.message;
 		}
 
-		return Promise.resolve([
-			'Unknown error',
-			undefined,
-		]);
+		return Promise.resolve(
+			new HttpError(message)
+		);
 	}
 }
 
-export { tryCatch };
+export { tryCatch, isHttpError };
