@@ -87,15 +87,15 @@ The http module exports a handy utility to provide a common interface for try/ca
 It abstracts the try catch logic and returns a baked tuple of `[string | undefined, responseData | undefined]`.
 
 ```ts
-import http, { tryCatch } from '@chrillaz/http';
+import http, { tryCatch, isHttpError } from '@chrillaz/http';
 
 type TypeForResponseDataProperty = {};
 
-const [errorMessage, responseData] = tryCatch<TypeForResponseDataProperty>(
+const response = tryCatch<TypeForResponseDataProperty>(
 	http.get('https://domain.com/path')
 );
 
-if (error) {
+if (isError(response)) {
     // do this
 } else {
     // do that

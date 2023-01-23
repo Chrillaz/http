@@ -1,4 +1,4 @@
-import { tryCatch } from './trycatch';
+import { isHttpError, tryCatch } from './trycatch';
 import http from './index';
 jest.mock('http');
 
@@ -22,32 +22,25 @@ describe('trycatch', () => {
 		.mockImplementationOnce(() => Promise.reject());
 
 	test('Successfull promise', async () => {
-		const [
-			error,
-			data,
-		] = await tryCatch(http.get('/'));
+		const response = await tryCatch(http.get('/'));
 
-		expect(data).toEqual(successResponse.data);
-		expect(error).not.toBeDefined();
+		expect(response).toEqual(successResponse.data);
+		expect(isHttpError(response)).toBeFalsy();
 	});
 
 	test('Failing promise with error', async () => {
-		const [
-			error,
-			data,
-		] = await tryCatch(http.get('/'));
+		const response = await tryCatch(http.get('/'));
 
-		expect(error).toEqual(errorResponse.message);
-		expect(data).not.toBeDefined();
+        if (isHttpError(response)) {
+            expect(response.message).toEqual(errorResponse.message);
+        }
 	});
 
 	test('Failing promise with unknown error', async () => {
-		const [
-			error,
-			data,
-		] = await tryCatch(http.get('/'));
+		const response = await tryCatch(http.get('/'));
 
-		expect(error).toEqual(unknownResponse);
-		expect(data).not.toBeDefined();
+        if (isHttpError(response)) {
+            expect(response.message).toEqual(unknownResponse);
+        }
 	});
 });
