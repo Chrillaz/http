@@ -13,7 +13,7 @@ describe('trycatch', () => {
 	};
 
 	const errorResponse = new Error('Something went wrong');
-	const unknownResponse = 'Unknown error';
+	const unknownResponse = 'Unknown Error.';
 
 	http.get = jest
 		.fn()
