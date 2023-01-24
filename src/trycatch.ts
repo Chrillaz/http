@@ -45,4 +45,4 @@ async function tryCatch<Data = unknown>(
 	}
 }
 
-export { tryCatch, isHttpError };
+export { tryCatch, isHttpError, HttpError };
