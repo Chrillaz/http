@@ -1,9 +1,15 @@
-async function jsonResponse<Data>(response: Response) {
+async function handleResponse<Data>(response: Response) {
 	if (!response.ok) {
 		throw new Error(response.statusText);
 	}
 
-	const result = (await response.json()) as Data;
+    let result;
+
+    if (response.headers.get('content-type')?.includes('text/html')) {
+        result = await response.text() as Data;
+    } else {
+        result = await response.json() as Data;
+    }
 
 	return {
 		ok: response.ok,
@@ -13,4 +19,4 @@ async function jsonResponse<Data>(response: Response) {
 	};
 }
 
-export { jsonResponse };
+export { handleResponse };

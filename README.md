@@ -1,6 +1,6 @@
 # Http
 
-Json REST client.
+Json / text REST client.
 Provides a wrapper around `window.fetch` which imitates the interface given by Axios.
 
 ## Create
