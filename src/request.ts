@@ -1,4 +1,4 @@
-import { jsonResponse } from './response';
+import { handleResponse } from './response';
 import { HttpRequest, InitConfig, Publisher, RequestConfig, RequestMethods } from './types';
 
 function get(publisher: Publisher) {
@@ -11,7 +11,7 @@ function get(publisher: Publisher) {
 			})
 		);
 
-		return await jsonResponse<Data>(publisher.response(response));
+		return await handleResponse<Data>(publisher.response(response));
 	};
 }
 
@@ -25,7 +25,7 @@ function put(publisher: Publisher) {
 			})
 		);
 
-		return await jsonResponse<Data>(publisher.response(response));
+		return await handleResponse<Data>(publisher.response(response));
 	};
 }
 
@@ -39,7 +39,7 @@ function post(publisher: Publisher) {
 			})
 		);
 
-		return await jsonResponse<Data>(publisher.response(response));
+		return await handleResponse<Data>(publisher.response(response));
 	};
 }
 
@@ -53,7 +53,7 @@ function _delete(publisher: Publisher) {
 			})
 		);
 
-		return await jsonResponse<Data>(publisher.response(response));
+		return await handleResponse<Data>(publisher.response(response));
 	};
 }
 
