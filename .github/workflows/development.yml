@@ -1,11 +1,19 @@
 name: development
 
 on:
-    pull_request:
-        branches: [development]
     push:
-        branches: [development]
+        tags:
+            - '@chrillaz/*'
 
 jobs:
-    call-test:
-        uses: './.github/workflows/test.yml'
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/github-scripts@v7
+              env:
+                  TAG: ${{ github.ref_name }}
+              with:
+                script: |
+                    console.log(process.env.TAG)
